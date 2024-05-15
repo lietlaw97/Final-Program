@@ -17,7 +17,6 @@ class FacialExpressionRecognition(object):
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
         self.last_index = 2
-
     def __call__(
         self,
         landmark_list,

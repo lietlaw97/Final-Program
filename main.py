@@ -6,6 +6,7 @@ from color import Color
 from canvas_video_player import CanvasVideoPlayer
 import sys
 from subprocess import Popen, PIPE
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 class App(ctk.CTk):
     def __init__(self):
@@ -43,7 +44,7 @@ class App(ctk.CTk):
         self.descKumpas.grid(row=0, column=0, sticky='news', padx=0, pady=0)
 
         self.current_path = os.path.dirname(os.path.realpath(__file__))
-        self.questionmark = ctk.CTkImage(Image.open("C:/Users/Asus/Desktop/SLT Program/Kumpas-FSL-Translator/img/shutdown.png"), size=(self.window_width * 0.0325,self.window_height * .0557))
+        self.questionmark = ctk.CTkImage(Image.open("img/shutdown.png"), size=(self.window_width * 0.0325,self.window_height * .0557))
         self.leftFrame_shutdown = ctk.CTkButton(master=self.leftFrame, image=self.questionmark, command=self.destroy, text="", fg_color="#718e8b", width=self.window_width * .015, height=self.window_height * .0588, border_width=0)
         self.leftFrame_shutdown.grid(row=2, column=0,sticky='ws', padx=self.window_width * .0083, pady=self.window_height * .02857)
 
@@ -61,7 +62,7 @@ class App(ctk.CTk):
         self.titleGroup.grid(row=0, column=0, sticky='nsew', padx=self.window_width * 0.15, pady=0)
 
 
-        self.kumpasLogo = ctk.CTkImage(Image.open("C:/Users/Asus/Desktop/SLT Program/Kumpas-FSL-Translator/img/kumpas.png"), size=(self.window_width * .1533,self.window_height * .15428))
+        self.kumpasLogo = ctk.CTkImage(Image.open("img/kumpas.png"), size=(self.window_width * .1533,self.window_height * .15428))
         self.kumpasLogoLabel = ctk.CTkLabel(master=self.titleFrame, image=self.kumpasLogo, text="", fg_color=self.color.transparent)
         self.kumpasLogoLabel.place(relx = 0.34, rely = 0.4, anchor = 'e')
         self.titleSeparator = ctk.CTkFrame(master=self.titleFrame,fg_color=self.color.white, height=2, border_width=0, width=self.window_width * .43)
@@ -135,7 +136,7 @@ class App(ctk.CTk):
         #     self.withdraw()
         #     self.signToText_window.returnBtn.configure(command=self.clicked_signToText)
         #     self.signToText_window.start_camera.start()
-        with Popen(["py", "sign_textv2.py"], stdout=PIPE, bufsize=1,
+        with Popen(["python", "sign_textv2.py"], stdout=PIPE, bufsize=1,
            universal_newlines=True) as p:
             for line in p.stdout:
                 print(line, end='')
@@ -152,7 +153,7 @@ class App(ctk.CTk):
         #     self.withdraw()
         #     self.speechToSign_window.returnBtn.configure(command=self.clicked_speechToSign)
             # self.speechToSign_window.start_camera.start()
-        speech_sign = Popen(["py","speech_signv2.py"], stdin=PIPE, stdout=PIPE)
+        speech_sign = Popen(["python","speech_signv2.py"], stdin=PIPE, stdout=PIPE)
         
 if __name__ == "__main__":
     app = App()

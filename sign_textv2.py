@@ -11,6 +11,7 @@ from gui_sign_to_text import SignToTextGUI
 import shutil
 import csv
 import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 class SignText():
     def __init__(self):
